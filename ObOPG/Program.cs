@@ -9,6 +9,7 @@ namespace ObOPG
 {
     class Program
     {
+        //GG
         static void Main(string[] args)
         {
             ConsoleKeyInfo input;
