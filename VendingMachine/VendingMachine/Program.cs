@@ -14,9 +14,15 @@ namespace VendingMachine
             VendingMachine vending = new VendingMachine();
 
 
+            vending.FillProduct();
+
+     
+           
+
+            Console.WriteLine(vending.PushProduct(2, 25));
 
 
-
+            Console.ReadKey();
         }
     }
 }

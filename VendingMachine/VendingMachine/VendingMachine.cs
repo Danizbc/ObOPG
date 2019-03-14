@@ -16,6 +16,8 @@ namespace VendingMachine
 
         Drink drink;
 
+        Product temp;
+
         List<Stack<Product>> vendingSlots = new List<Stack<Product>>();
 
         List<Candy> removedCandies = new List<Candy>();
@@ -24,7 +26,11 @@ namespace VendingMachine
 
         private int moneyBox = 0;
 
-    
+        private int returnMoney = 0;
+
+        private bool buyCompletet = false;
+
+        //Properties
 
 
         //Constructor
@@ -38,10 +44,65 @@ namespace VendingMachine
 
         }
 
+        /// <summary>
+        /// Input ProductNumber 0-1-2 candy. 3-4-5 drinks
+        /// </summary>
+        /// <param name="productNumber"></param>
+        /// <returns></returns>
+        public string PushProduct(int productNumber, int money)
+        {
+            PickObject(productNumber);
+
+            InsertCoin(money);
+
+            if (buyCompletet == true)
+            {
+                switch (temp.ID)
+                {
+                    case 0:
+                        removedCandies.Add((Candy)temp);
+                        break;
+
+                    case 1:
+                        removedDrinks.Add((Drink)temp);
+                        break;
+                    default:
+                        break;
+                }
+                return $"You bought {temp.Name}.\n Money returned = {returnMoney}";
+            }
+            else
+            {
+                return "You didnt have enough money, insert more or pick another product";
+            }
+        }
+
+        private int InsertCoin(int money)
+        {
+            if (temp.Price <= money)
+            {
+                returnMoney = money -= temp.Price;
+                buyCompletet = true;
+                return returnMoney;
+            }
+            else
+            {
+                buyCompletet = false;
+                return money;
+            }
+        }
 
         //Methods
+        /// <summary>
+        /// 0-2 candy.. 3-5 soda
+        /// </summary>
+        /// <param name="product"></param>
+        private int PickObject(int product)
+        {
+            temp = vendingSlots[product].Pop();
 
-
+            return temp.Price;
+        }
 
 
         public void FillProduct()
