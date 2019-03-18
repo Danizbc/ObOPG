@@ -270,9 +270,16 @@ namespace VendingMachine
 
             for (int i = 0; i < vendingSlots.Count; i++)
             {
-                returnString += $"Product ID = {i}.\n" +
-                                $"Name = {vendingSlots[i].Peek().Name}.\n" +
-                                $"price = {vendingSlots[i].Peek().Price}.\n\n";
+                if (vendingSlots[i].Count > 0)
+                {
+                    returnString += $"Product ID = {i}.\n" +
+                                    $"Name = {vendingSlots[i].Peek().Name}.\n" +
+                                    $"price = {vendingSlots[i].Peek().Price}.\n\n";
+                }
+                else
+                {
+
+                }
             }
 
             return returnString;

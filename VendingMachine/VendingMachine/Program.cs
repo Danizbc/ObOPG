@@ -37,7 +37,7 @@ namespace VendingMachine
                
                 Console.Write($"| ____   ____   ____   ____   ____   ____ | {timer}% \n");
                 timer += 20;
-                Thread.Sleep(2000);
+                Thread.Sleep(100);
                 if (timer >= 101)
                 {
                     poweringOn = false;
@@ -127,6 +127,8 @@ namespace VendingMachine
             //User menu buy product, return money, if not enough money return money, and u can start all over .
             while (true)
             {
+                productID = 99;
+                userMoney = 1000;
                 try
                 {
                     Console.Clear();
@@ -156,6 +158,7 @@ namespace VendingMachine
                     Console.Clear();
 
                     if (char.ToLower(input.KeyChar) == 'y')
+
                     {
                         Console.WriteLine(vending.VendingMenu('c', productID, userMoney, loginPass));
                     }
